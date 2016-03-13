@@ -1,0 +1,17 @@
+
+<div class="row">
+    <div class="col-sm-8">
+            <div class="card">
+                <div class="card-block">
+                    <h4 class="card-title"><%= @markdown.render(article.title).html_safe %></h4>
+                    <p class="card-text"><%= @markdown.render(article.body).html_safe %></p>
+                </div>
+                <div class="card-footer">
+                    <%= link_to 'Edit', edit_article_path(article), class: 'btn btn-primary' %>
+                    <%= link_to 'Show', article, class: 'btn btn-warning' %>
+                    <%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+                </div>
+
+            </div>
+    </div>
+</div>

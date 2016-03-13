@@ -1,0 +1,1182 @@
+
+
+Started GET "/" for ::1 at 2016-03-03 08:51:23 +0700
+  [1m[36mActiveRecord::SchemaMigration Load (26.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (20.0ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered collection (0.0ms)
+  [1m[36m (2.0ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (296.2ms)
+Completed 200 OK in 30423ms (Views: 30183.8ms | ActiveRecord: 26.0ms)
+
+
+Started GET "/articles/new" for ::1 at 2016-03-03 08:52:03 +0700
+Processing by ArticlesController#new as HTML
+  Rendered articles/_form.html.erb (156.3ms)
+  Rendered articles/new.html.erb within layouts/application (203.1ms)
+Completed 200 OK in 893ms (Views: 842.9ms | ActiveRecord: 46.9ms)
+
+
+Started POST "/articles" for ::1 at 2016-03-03 08:52:08 +0700
+Processing by ArticlesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"03lUrjcV/ECIioStlABzq04VPEryn0iY700ccbKyF9zV485K8GoWqsK0zDIp8rh13q6Uf5+7cEvo/Tu7JCpLQg==", "article"=>{"title"=>"d", "body"=>""}, "commit"=>"Create Article"}
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mArticle Exists (11.0ms)[0m  [1mSELECT  1 AS one FROM "articles" WHERE "articles"."title" = 'd' LIMIT 1[0m
+  [1m[35m (1.0ms)[0m  ROLLBACK
+  Rendered articles/_form.html.erb (8.0ms)
+  Rendered articles/new.html.erb within layouts/application (49.0ms)
+Completed 200 OK in 925ms (Views: 661.7ms | ActiveRecord: 13.0ms)
+
+
+Started POST "/articles" for ::1 at 2016-03-03 08:52:16 +0700
+Processing by ArticlesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aQSPT4DyUsrXOkwG6DfUCP4YHdW7kFrsUG9D1IYK6a9vnhWrR424IJ0EBJlVxR/WbqO14Na0Yj9X32QeEJK1MQ==", "article"=>{"title"=>"dajsd", "body"=>"alsdjlas"}, "commit"=>"Create Article"}
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mArticle Exists (1.0ms)[0m  SELECT  1 AS one FROM "articles" WHERE "articles"."title" = 'dajsd' LIMIT 1
+  [1m[36mSQL (60.0ms)[0m  [1mINSERT INTO "articles" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "dajsd"], ["body", "alsdjlas"], ["created_at", "2016-03-03 01:52:16.962865"], ["updated_at", "2016-03-03 01:52:16.962865"]]
+  [1m[35m (31.0ms)[0m  COMMIT
+Redirected to http://localhost:3000/articles/1
+Completed 302 Found in 124ms (ActiveRecord: 94.1ms)
+
+
+Started GET "/articles/1" for ::1 at 2016-03-03 08:52:17 +0700
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArticle Load (13.0ms)[0m  [1mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (20.0ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."article_id" = $1  [["article_id", 1]]
+  Rendered articles/show.html.erb within layouts/application (321.2ms)
+Completed 200 OK in 997ms (Views: 870.6ms | ActiveRecord: 39.0ms)
+
+
+Started POST "/articles/1/comments" for ::1 at 2016-03-03 08:52:24 +0700
+Processing by CommentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KqbIdRZz0aykviW6P6SR3WOhbUZhDn4x9LwPJte+cCksPFKR0Qw7Ru6AbSWCVloD8xrFcwwqRuLzDCjsQSYstw==", "comment"=>{"commenter"=>"ldka", "body"=>"saldk"}, "commit"=>"Create Comment", "article_id"=>"1"}
+  [1m[36mArticle Load (1.0ms)[0m  [1mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mSQL (41.0ms)[0m  [1mINSERT INTO "comments" ("commenter", "body", "article_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["commenter", "ldka"], ["body", "saldk"], ["article_id", 1], ["created_at", "2016-03-03 01:52:24.219015"], ["updated_at", "2016-03-03 01:52:24.219015"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+Redirected to http://localhost:3000/articles/1
+Completed 302 Found in 74ms (ActiveRecord: 44.0ms)
+
+
+Started GET "/articles/1" for ::1 at 2016-03-03 08:52:24 +0700
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mArticle Load (2.0ms)[0m  [1mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (1.0ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."article_id" = $1  [["article_id", 1]]
+  Rendered articles/show.html.erb within layouts/application (12.0ms)
+Completed 200 OK in 710ms (Views: 700.9ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 08:52:27 +0700
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (1.0ms)[0m  [1mSELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0[0m
+  Rendered articles/_article.html.erb (4.0ms)
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM "articles"
+  Rendered articles/index.html.erb within layouts/application (199.3ms)
+Completed 200 OK in 769ms (Views: 773.9ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/articles/new" for ::1 at 2016-03-03 08:52:30 +0700
+Processing by ArticlesController#new as HTML
+  Rendered articles/_form.html.erb (0.0ms)
+  Rendered articles/new.html.erb within layouts/application (46.9ms)
+Completed 200 OK in 596ms (Views: 593.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/articles" for ::1 at 2016-03-03 08:52:34 +0700
+Processing by ArticlesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"XqpVkMPUf7P99q+FcL/qBhMUsp43UFFvZjyEWrerdC1YMM90BKuVWbfI5xrNTSHYg68aq1p0abxhjKOQITMosw==", "article"=>{"title"=>"lj", "body"=>"asldj"}, "commit"=>"Create Article"}
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mArticle Exists (1.0ms)[0m  SELECT  1 AS one FROM "articles" WHERE "articles"."title" = 'lj' LIMIT 1
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "articles" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "lj"], ["body", "asldj"], ["created_at", "2016-03-03 01:52:34.852377"], ["updated_at", "2016-03-03 01:52:34.852377"]]
+  [1m[35m (8.0ms)[0m  COMMIT
+Redirected to http://localhost:3000/articles/2
+Completed 302 Found in 37ms (ActiveRecord: 11.0ms)
+
+
+Started GET "/articles/2" for ::1 at 2016-03-03 08:52:34 +0700
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mArticle Load (2.0ms)[0m  [1mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mComment Load (1.0ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."article_id" = $1  [["article_id", 2]]
+  Rendered articles/show.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 643ms (Views: 635.0ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 08:52:39 +0700
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (0.0ms)[0m  [1mSELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0[0m
+  Rendered articles/_article.html.erb (0.0ms)
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "articles"
+  Rendered articles/index.html.erb within layouts/application (178.6ms)
+Completed 200 OK in 712ms (Views: 693.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/articles/new" for ::1 at 2016-03-03 08:52:42 +0700
+Processing by ArticlesController#new as HTML
+  Rendered articles/_form.html.erb (0.0ms)
+  Rendered articles/new.html.erb within layouts/application (46.9ms)
+Completed 200 OK in 547ms (Views: 549.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/articles" for ::1 at 2016-03-03 08:52:47 +0700
+Processing by ArticlesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"dAl/j3TNVtTw572Vn7ZeHpx0G+R6WEYm+y1NF4W+filyk+Vrs7K8PrrZ9QoiRJXADM+z0Rd8fvX8nWrdEyYitw==", "article"=>{"title"=>"ldf", "body"=>"`lasdj"}, "commit"=>"Create Article"}
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mArticle Exists (1.0ms)[0m  SELECT  1 AS one FROM "articles" WHERE "articles"."title" = 'ldf' LIMIT 1
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "articles" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "ldf"], ["body", "`lasdj"], ["created_at", "2016-03-03 01:52:47.430737"], ["updated_at", "2016-03-03 01:52:47.430737"]]
+  [1m[35m (6.0ms)[0m  COMMIT
+Redirected to http://localhost:3000/articles/3
+Completed 302 Found in 36ms (ActiveRecord: 9.0ms)
+
+
+Started GET "/articles/3" for ::1 at 2016-03-03 08:52:47 +0700
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mArticle Load (1.0ms)[0m  [1mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mComment Load (1.0ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."article_id" = $1  [["article_id", 3]]
+  Rendered articles/show.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 663ms (Views: 654.7ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 08:52:51 +0700
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (0.0ms)[0m  [1mSELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0[0m
+  Rendered articles/_article.html.erb (0.0ms)
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "articles"
+  Rendered articles/index.html.erb within layouts/application (171.9ms)
+Completed 200 OK in 672ms (Views: 665.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/articles/new" for ::1 at 2016-03-03 08:52:55 +0700
+Processing by ArticlesController#new as HTML
+  Rendered articles/_form.html.erb (15.6ms)
+  Rendered articles/new.html.erb within layouts/application (62.5ms)
+Completed 200 OK in 550ms (Views: 554.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/articles" for ::1 at 2016-03-03 08:52:59 +0700
+Processing by ArticlesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Y/C7CRaC8U9O7frgmoi8EFZuySR9QYEEcR5wS5t8TiplaiHt0f0bpQTTsn8nenfOxtVhERBludd2rleBDeQStA==", "article"=>{"title"=>"dajs`", "body"=>"lasdk"}, "commit"=>"Create Article"}
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mArticle Exists (1.0ms)[0m  SELECT  1 AS one FROM "articles" WHERE "articles"."title" = 'dajs`' LIMIT 1
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "articles" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "dajs`"], ["body", "lasdk"], ["created_at", "2016-03-03 01:52:59.815614"], ["updated_at", "2016-03-03 01:52:59.815614"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+Redirected to http://localhost:3000/articles/4
+Completed 302 Found in 30ms (ActiveRecord: 4.0ms)
+
+
+Started GET "/articles/4" for ::1 at 2016-03-03 08:52:59 +0700
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mArticle Load (1.0ms)[0m  [1mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mComment Load (1.0ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."article_id" = $1  [["article_id", 4]]
+  Rendered articles/show.html.erb within layouts/application (27.0ms)
+Completed 200 OK in 570ms (Views: 559.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 08:53:02 +0700
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (0.0ms)[0m  [1mSELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0[0m
+  Rendered articles/_article.html.erb (0.0ms)
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "articles"
+  Rendered articles/index.html.erb within layouts/application (156.3ms)
+Completed 200 OK in 667ms (Views: 654.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/articles/new" for ::1 at 2016-03-03 08:53:06 +0700
+Processing by ArticlesController#new as HTML
+  Rendered articles/_form.html.erb (0.0ms)
+  Rendered articles/new.html.erb within layouts/application (46.9ms)
+Completed 200 OK in 578ms (Views: 569.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/articles" for ::1 at 2016-03-03 08:53:10 +0700
+Processing by ArticlesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GhGkicxgM8typFeZjOG1JVkI3hR4XVsIBk/S42gShgwciz5tCx/ZITiaHwYxE377ybN2IRV5Y9sB//Up/orakg==", "article"=>{"title"=>"kj", "body"=>"lasjd"}, "commit"=>"Create Article"}
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mArticle Exists (2.0ms)[0m  SELECT  1 AS one FROM "articles" WHERE "articles"."title" = 'kj' LIMIT 1
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "articles" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "kj"], ["body", "lasjd"], ["created_at", "2016-03-03 01:53:10.814232"], ["updated_at", "2016-03-03 01:53:10.814232"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+Redirected to http://localhost:3000/articles/5
+Completed 302 Found in 29ms (ActiveRecord: 5.0ms)
+
+
+Started GET "/articles/5" for ::1 at 2016-03-03 08:53:10 +0700
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mArticle Load (1.0ms)[0m  [1mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35mComment Load (2.0ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."article_id" = $1  [["article_id", 5]]
+  Rendered articles/show.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 590ms (Views: 580.4ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 08:53:13 +0700
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (1.0ms)[0m  [1mSELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0[0m
+  Rendered articles/_article.html.erb (0.0ms)
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "articles"
+  Rendered articles/index.html.erb within layouts/application (165.1ms)
+Completed 200 OK in 675ms (Views: 672.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/articles/new" for ::1 at 2016-03-03 08:53:17 +0700
+Processing by ArticlesController#new as HTML
+  Rendered articles/_form.html.erb (0.0ms)
+  Rendered articles/new.html.erb within layouts/application (62.5ms)
+Completed 200 OK in 563ms (Views: 558.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/articles" for ::1 at 2016-03-03 08:53:21 +0700
+Processing by ArticlesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8PyvBN41Tupxzk6Naj3cgl0S5tQPangqcg+bZVqb7HL2ZjXgGUqkADvwBhLXzxdczalO4WJOQPl1v7yvzAOw7A==", "article"=>{"title"=>"ksdj", "body"=>"asldj"}, "commit"=>"Create Article"}
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mArticle Exists (2.0ms)[0m  SELECT  1 AS one FROM "articles" WHERE "articles"."title" = 'ksdj' LIMIT 1
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "articles" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "ksdj"], ["body", "asldj"], ["created_at", "2016-03-03 01:53:21.061845"], ["updated_at", "2016-03-03 01:53:21.061845"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+Redirected to http://localhost:3000/articles/6
+Completed 302 Found in 27ms (ActiveRecord: 5.0ms)
+
+
+Started GET "/articles/6" for ::1 at 2016-03-03 08:53:21 +0700
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mArticle Load (1.0ms)[0m  [1mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mComment Load (1.0ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."article_id" = $1  [["article_id", 6]]
+  Rendered articles/show.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 555ms (Views: 546.7ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 08:53:24 +0700
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (1.0ms)[0m  [1mSELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0[0m
+  Rendered articles/_article.html.erb (0.0ms)
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "articles"
+  Rendered articles/index.html.erb within layouts/application (605.7ms)
+Completed 200 OK in 1116ms (Views: 1126.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 08:53:25 +0700
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (0.0ms)[0m  [1mSELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0[0m
+  Rendered articles/_article.html.erb (0.0ms)
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "articles"
+  Rendered articles/index.html.erb within layouts/application (594.5ms)
+Completed 200 OK in 1110ms (Views: 1107.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/articles?page=2" for ::1 at 2016-03-03 08:53:33 +0700
+Processing by ArticlesController#index as HTML
+  Parameters: {"page"=>"2"}
+  [1m[36mArticle Load (0.0ms)[0m  [1mSELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 5[0m
+  Rendered articles/_article.html.erb (4.0ms)
+  [1m[35m (2.0ms)[0m  SELECT COUNT(*) FROM "articles"
+  Rendered articles/index.html.erb within layouts/application (580.0ms)
+Completed 200 OK in 1127ms (Views: 1121.2ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 08:53:38 +0700
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (0.0ms)[0m  [1mSELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0[0m
+  Rendered articles/_article.html.erb (0.0ms)
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "articles"
+  Rendered articles/index.html.erb within layouts/application (579.8ms)
+Completed 200 OK in 1205ms (Views: 1204.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-03-03 20:53:32 +0700
+  [1m[36mActiveRecord::SchemaMigration Load (64.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (122.1ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered articles/_article.html.erb (25.0ms)
+  [1m[36m (3.0ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (1455.0ms)
+Completed 200 OK in 5742ms (Views: 5253.4ms | ActiveRecord: 303.2ms)
+
+
+Started GET "/" for ::1 at 2016-03-03 21:18:15 +0700
+  [1m[36mActiveRecord::SchemaMigration Load (4.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (5.0ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered articles/_article.html.erb (19.5ms)
+  [1m[36m (2.0ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (1090.2ms)
+Completed 200 OK in 3485ms (Views: 3364.5ms | ActiveRecord: 27.0ms)
+
+
+Started GET "/" for ::1 at 2016-03-03 21:24:02 +0700
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (2.0ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered articles/_article.html.erb (29.0ms)
+  [1m[36m (2.0ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (798.5ms)
+Completed 200 OK in 1867ms (Views: 1859.8ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/assets/application.self-030b94d6c14736f3b49edf213461e588784edd8d46a688e2f48ce2e0601c7943.css?body=1" for ::1 at 2016-03-03 21:24:05 +0700
+
+
+Started GET "/assets/bootstrap/carousel.self-8e572923c87f450d7f38176167d96a27913dac0771100278265523b97f2bb074.js?body=1" for ::1 at 2016-03-03 21:24:05 +0700
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-03 21:24:05 +0700
+
+
+Started GET "/assets/bootstrap/util.self-259befb5ba307350f3ed40e4ff1d27e6268e407ee0da02fd46435784459fc746.js?body=1" for ::1 at 2016-03-03 21:24:05 +0700
+
+
+Started GET "/assets/bootstrap/alert.self-44483afe785e8334f25977de4cc25db3b8ca7ef953e60d2eeda2deeeccfda56e.js?body=1" for ::1 at 2016-03-03 21:24:05 +0700
+
+
+Started GET "/assets/bootstrap/collapse.self-4f8619d8d3fb252be59e65ef55b5a91dee275861b5d729c7e64f55091266984e.js?body=1" for ::1 at 2016-03-03 21:24:05 +0700
+
+
+Started GET "/assets/bootstrap/button.self-9a46ecb8ace47b217ba3ee88c7a8c7572b0ef75e77fff1b4e32ddf00af7fefe4.js?body=1" for ::1 at 2016-03-03 21:24:05 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.self-77fbc8160624d6515b5d55fa40e7e7ba8f4ebe526b6007fe5a6bbc4437b46a1e.js?body=1" for ::1 at 2016-03-03 21:24:05 +0700
+
+
+Started GET "/assets/bootstrap/modal.self-83fa21d21f8b68b3389ce5018b81be0ad967d65f1e08e3acd0d5c804e31e64a7.js?body=1" for ::1 at 2016-03-03 21:24:05 +0700
+
+
+Started GET "/assets/bootstrap/scrollspy.self-7474c149d14b6006919c68e8dd36423c169ef1c15b54a701b82e3931831fa434.js?body=1" for ::1 at 2016-03-03 21:24:05 +0700
+
+
+Started GET "/assets/bootstrap/tab.self-7249bd863668fd4b877386598154c53466a77a853ae4d9ee2c45476fa3a361eb.js?body=1" for ::1 at 2016-03-03 21:24:05 +0700
+
+
+Started GET "/assets/bootstrap/tooltip.self-ff495cd6932165d4adceb3a8baec7340536f4d26b2fa14cd202e651ccc7f513a.js?body=1" for ::1 at 2016-03-03 21:24:05 +0700
+
+
+Started GET "/assets/bootstrap/popover.self-1b1efcd196ba075b0e9b7962c2a7631c8d7bcc7010e0140ad2c071cb0594a1d9.js?body=1" for ::1 at 2016-03-03 21:24:05 +0700
+
+
+Started GET "/assets/bootstrap-sprockets.self-636159b35205da4142a43bc02d2849d77d3ac07a0946211585cde15a9c6ff21f.js?body=1" for ::1 at 2016-03-03 21:24:05 +0700
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-03 21:24:05 +0700
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-03 21:24:05 +0700
+
+
+Started GET "/assets/articles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-03 21:24:05 +0700
+
+
+Started GET "/assets/comments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-03 21:24:05 +0700
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-03-03 21:24:05 +0700
+
+
+Started GET "/" for ::1 at 2016-03-03 21:24:45 +0700
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (3.0ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered articles/_article.html.erb (15.0ms)
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (698.5ms)
+Completed 200 OK in 1941ms (Views: 1934.9ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-03 21:24:48 +0700
+
+
+Started GET "/assets/application.self-030b94d6c14736f3b49edf213461e588784edd8d46a688e2f48ce2e0601c7943.css?body=1" for ::1 at 2016-03-03 21:24:48 +0700
+
+
+Started GET "/assets/bootstrap/button.self-9a46ecb8ace47b217ba3ee88c7a8c7572b0ef75e77fff1b4e32ddf00af7fefe4.js?body=1" for ::1 at 2016-03-03 21:24:48 +0700
+
+
+Started GET "/assets/bootstrap/carousel.self-8e572923c87f450d7f38176167d96a27913dac0771100278265523b97f2bb074.js?body=1" for ::1 at 2016-03-03 21:24:48 +0700
+
+
+Started GET "/assets/bootstrap/alert.self-44483afe785e8334f25977de4cc25db3b8ca7ef953e60d2eeda2deeeccfda56e.js?body=1" for ::1 at 2016-03-03 21:24:48 +0700
+
+
+Started GET "/assets/bootstrap/util.self-259befb5ba307350f3ed40e4ff1d27e6268e407ee0da02fd46435784459fc746.js?body=1" for ::1 at 2016-03-03 21:24:48 +0700
+
+
+Started GET "/assets/bootstrap/collapse.self-4f8619d8d3fb252be59e65ef55b5a91dee275861b5d729c7e64f55091266984e.js?body=1" for ::1 at 2016-03-03 21:24:48 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.self-77fbc8160624d6515b5d55fa40e7e7ba8f4ebe526b6007fe5a6bbc4437b46a1e.js?body=1" for ::1 at 2016-03-03 21:24:48 +0700
+
+
+Started GET "/assets/bootstrap/modal.self-83fa21d21f8b68b3389ce5018b81be0ad967d65f1e08e3acd0d5c804e31e64a7.js?body=1" for ::1 at 2016-03-03 21:24:48 +0700
+
+
+Started GET "/assets/bootstrap/scrollspy.self-7474c149d14b6006919c68e8dd36423c169ef1c15b54a701b82e3931831fa434.js?body=1" for ::1 at 2016-03-03 21:24:48 +0700
+
+
+Started GET "/assets/bootstrap/tab.self-7249bd863668fd4b877386598154c53466a77a853ae4d9ee2c45476fa3a361eb.js?body=1" for ::1 at 2016-03-03 21:24:48 +0700
+
+
+Started GET "/assets/bootstrap/tooltip.self-ff495cd6932165d4adceb3a8baec7340536f4d26b2fa14cd202e651ccc7f513a.js?body=1" for ::1 at 2016-03-03 21:24:48 +0700
+
+
+Started GET "/assets/bootstrap/popover.self-1b1efcd196ba075b0e9b7962c2a7631c8d7bcc7010e0140ad2c071cb0594a1d9.js?body=1" for ::1 at 2016-03-03 21:24:48 +0700
+
+
+Started GET "/assets/bootstrap-sprockets.self-636159b35205da4142a43bc02d2849d77d3ac07a0946211585cde15a9c6ff21f.js?body=1" for ::1 at 2016-03-03 21:24:49 +0700
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-03 21:24:49 +0700
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-03 21:24:49 +0700
+
+
+Started GET "/assets/articles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-03 21:24:49 +0700
+
+
+Started GET "/assets/comments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-03 21:24:49 +0700
+
+
+Started GET "/assets/application.self-db5e50b953ea9eab2b2a43a23c5d733d73f58735c206b334c1fc147ad54761c9.js?body=1" for ::1 at 2016-03-03 21:24:49 +0700
+
+
+Started DELETE "/articles/1" for ::1 at 2016-03-03 21:24:57 +0700
+Processing by ArticlesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"EGPp/opzmIW1ZmcXqLmJOSMTqPGrPpxDeRDhJD5vL34W+XMaTQxyb/9YL4gVS0Lns6gAxMYapJB+oMbuqPdz4A==", "id"=>"1"}
+  [1m[35mArticle Load (2.0ms)[0m  SELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (162.1ms)[0m  DELETE FROM "articles" WHERE "articles"."id" = $1  [["id", 1]]
+  [1m[36m (1.0ms)[0m  [1mROLLBACK[0m
+Completed 500 Internal Server Error in 347ms (ActiveRecord: 167.1ms)
+
+ActiveRecord::InvalidForeignKey (PG::ForeignKeyViolation: ERROR:  update or delete on table "articles" violates foreign key constraint "fk_rails_3bf61a60d3" on table "comments"
+DETAIL:  Key (id)=(1) is still referenced from table "comments".
+: DELETE FROM "articles" WHERE "articles"."id" = $1):
+  app/controllers/articles_controller.rb:67:in `destroy'
+
+
+  Rendered c:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.0ms)
+  Rendered c:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (31.0ms)
+  Rendered c:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (4.0ms)
+  Rendered c:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (4021.4ms)
+  Rendered c:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (2.0ms)
+  Rendered c:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (2.0ms)
+  Rendered c:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered c:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered c:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (3915.6ms)
+  Rendered c:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered c:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (2.0ms)
+  Rendered c:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (8601.8ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 21:25:30 +0700
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (1.0ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered articles/_article.html.erb (6.0ms)
+  [1m[36m (2.0ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (746.5ms)
+Completed 200 OK in 1781ms (Views: 1775.0ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/articles?page=2" for ::1 at 2016-03-03 21:25:46 +0700
+Processing by ArticlesController#index as HTML
+  Parameters: {"page"=>"2"}
+  [1m[35mArticle Load (2.0ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 5
+  Rendered articles/_article.html.erb (6.0ms)
+  [1m[36m (2.0ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (829.1ms)
+Completed 200 OK in 1636ms (Views: 1629.7ms | ActiveRecord: 4.0ms)
+
+
+Started DELETE "/articles/6" for ::1 at 2016-03-03 21:25:50 +0700
+Processing by ArticlesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"qWTTBAoDUNT4rAy+1sAFyDCc8AeFbQm8tKweb29WK22v/kngzXy6PrKSRCFrMs4WoCdYMuhJMW+zHDml+c538w==", "id"=>"6"}
+  [1m[35mArticle Load (1.0ms)[0m  SELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (2.0ms)[0m  DELETE FROM "articles" WHERE "articles"."id" = $1  [["id", 6]]
+  [1m[36m (2.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/articles
+Completed 302 Found in 28ms (ActiveRecord: 6.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 21:25:50 +0700
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (2.0ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered articles/_article.html.erb (17.5ms)
+  [1m[36m (1.5ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (415.3ms)
+Completed 200 OK in 1440ms (Views: 1433.4ms | ActiveRecord: 3.5ms)
+
+
+Started DELETE "/articles/5" for ::1 at 2016-03-03 21:25:57 +0700
+Processing by ArticlesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"rbKQXiIWJqRj/OKjDm39LX3FYUOCbq3aSoA6xzlKb0qrKAq65WnMTinCqjyznzbz7X7Jdu9KlQlNMB0Nr9Iz1A==", "id"=>"5"}
+  [1m[35mArticle Load (1.0ms)[0m  SELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT 1  [["id", 5]]
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (2.0ms)[0m  DELETE FROM "articles" WHERE "articles"."id" = $1  [["id", 5]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/articles
+Completed 302 Found in 20ms (ActiveRecord: 5.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 21:25:57 +0700
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (1.0ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered articles/_article.html.erb (8.0ms)
+  [1m[36m (2.0ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (276.2ms)
+Completed 200 OK in 1680ms (Views: 1675.0ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 21:26:06 +0700
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (1.0ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered articles/_article.html.erb (6.0ms)
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (183.1ms)
+Completed 200 OK in 1155ms (Views: 1149.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/assets/application.self-030b94d6c14736f3b49edf213461e588784edd8d46a688e2f48ce2e0601c7943.css?body=1" for ::1 at 2016-03-03 21:26:08 +0700
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-03 21:26:08 +0700
+
+
+Started GET "/assets/bootstrap/util.self-259befb5ba307350f3ed40e4ff1d27e6268e407ee0da02fd46435784459fc746.js?body=1" for ::1 at 2016-03-03 21:26:08 +0700
+
+
+Started GET "/assets/bootstrap/alert.self-44483afe785e8334f25977de4cc25db3b8ca7ef953e60d2eeda2deeeccfda56e.js?body=1" for ::1 at 2016-03-03 21:26:09 +0700
+
+
+Started GET "/assets/bootstrap/button.self-9a46ecb8ace47b217ba3ee88c7a8c7572b0ef75e77fff1b4e32ddf00af7fefe4.js?body=1" for ::1 at 2016-03-03 21:26:09 +0700
+
+
+Started GET "/assets/bootstrap/carousel.self-8e572923c87f450d7f38176167d96a27913dac0771100278265523b97f2bb074.js?body=1" for ::1 at 2016-03-03 21:26:09 +0700
+
+
+Started GET "/assets/bootstrap/collapse.self-4f8619d8d3fb252be59e65ef55b5a91dee275861b5d729c7e64f55091266984e.js?body=1" for ::1 at 2016-03-03 21:26:09 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.self-77fbc8160624d6515b5d55fa40e7e7ba8f4ebe526b6007fe5a6bbc4437b46a1e.js?body=1" for ::1 at 2016-03-03 21:26:09 +0700
+
+
+Started GET "/assets/bootstrap/modal.self-83fa21d21f8b68b3389ce5018b81be0ad967d65f1e08e3acd0d5c804e31e64a7.js?body=1" for ::1 at 2016-03-03 21:26:09 +0700
+
+
+Started GET "/assets/bootstrap/scrollspy.self-7474c149d14b6006919c68e8dd36423c169ef1c15b54a701b82e3931831fa434.js?body=1" for ::1 at 2016-03-03 21:26:09 +0700
+
+
+Started GET "/assets/bootstrap/tab.self-7249bd863668fd4b877386598154c53466a77a853ae4d9ee2c45476fa3a361eb.js?body=1" for ::1 at 2016-03-03 21:26:09 +0700
+
+
+Started GET "/assets/bootstrap/tooltip.self-ff495cd6932165d4adceb3a8baec7340536f4d26b2fa14cd202e651ccc7f513a.js?body=1" for ::1 at 2016-03-03 21:26:09 +0700
+
+
+Started GET "/assets/bootstrap/popover.self-1b1efcd196ba075b0e9b7962c2a7631c8d7bcc7010e0140ad2c071cb0594a1d9.js?body=1" for ::1 at 2016-03-03 21:26:09 +0700
+
+
+Started GET "/assets/bootstrap-sprockets.self-636159b35205da4142a43bc02d2849d77d3ac07a0946211585cde15a9c6ff21f.js?body=1" for ::1 at 2016-03-03 21:26:09 +0700
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-03 21:26:09 +0700
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-03 21:26:09 +0700
+
+
+Started GET "/assets/articles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-03 21:26:10 +0700
+
+
+Started GET "/assets/comments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-03 21:26:10 +0700
+
+
+Started GET "/assets/application.self-cf24ffb375e57ee36cd3a7e44f6311da89463903f6aa6028ce66ea4ae6734148.js?body=1" for ::1 at 2016-03-03 21:26:10 +0700
+
+
+Started GET "/articles/new" for ::1 at 2016-03-03 21:26:12 +0700
+Processing by ArticlesController#new as HTML
+  Rendered articles/_form.html.erb (217.7ms)
+  Rendered articles/new.html.erb within layouts/application (280.3ms)
+Completed 200 OK in 950ms (Views: 946.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/articles/new" for ::1 at 2016-03-03 21:26:13 +0700
+Processing by ArticlesController#new as HTML
+  Rendered articles/_form.html.erb (2.0ms)
+  Rendered articles/new.html.erb within layouts/application (59.0ms)
+Completed 200 OK in 588ms (Views: 587.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/articles" for ::1 at 2016-03-03 21:26:17 +0700
+Processing by ArticlesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"puovML8N7C0O+yHI5jUQ2JhBDiEbMWLbrcNwWsfaefagcLXUeHIGx0TFaVdbx9sGCPqmFHYVWgiqc1eQUUIlaA==", "article"=>{"title"=>"lasd", "body"=>"aslda"}, "commit"=>"Create Article"}
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mArticle Exists (2.0ms)[0m  [1mSELECT  1 AS one FROM "articles" WHERE "articles"."title" = 'lasd' LIMIT 1[0m
+  [1m[35mSQL (37.0ms)[0m  INSERT INTO "articles" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["title", "lasd"], ["body", "aslda"], ["created_at", "2016-03-03 14:26:18.202123"], ["updated_at", "2016-03-03 14:26:18.202123"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/articles/7
+Completed 302 Found in 241ms (ActiveRecord: 41.0ms)
+
+
+Started GET "/articles/7" for ::1 at 2016-03-03 21:26:18 +0700
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[35mArticle Load (1.0ms)[0m  SELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT 1  [["id", 7]]
+  [1m[36mComment Load (1.0ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = $1[0m  [["article_id", 7]]
+  Rendered articles/show.html.erb within layouts/application (366.3ms)
+Completed 200 OK in 1072ms (Views: 1057.5ms | ActiveRecord: 9.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 21:26:23 +0700
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (1.0ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered articles/_article.html.erb (6.0ms)
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (206.2ms)
+Completed 200 OK in 813ms (Views: 808.7ms | ActiveRecord: 2.0ms)
+
+
+Started DELETE "/articles/7" for ::1 at 2016-03-03 21:26:31 +0700
+Processing by ArticlesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"cF+rQX920wqMsCzM1GCsZANbYHRHvjghRmc44OYqi/Z2xTGluAk54MaOZFNpkme6k+DIQSqaAPJB1x8qcLLXaA==", "id"=>"7"}
+  [1m[35mArticle Load (2.0ms)[0m  SELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT 1  [["id", 7]]
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (2.5ms)[0m  DELETE FROM "articles" WHERE "articles"."id" = $1  [["id", 7]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/articles
+Completed 302 Found in 41ms (ActiveRecord: 6.5ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 21:26:31 +0700
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (2.5ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered articles/_article.html.erb (7.5ms)
+  [1m[36m (1.5ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (301.8ms)
+Completed 200 OK in 1127ms (Views: 1120.6ms | ActiveRecord: 4.0ms)
+
+
+Started DELETE "/articles/4" for ::1 at 2016-03-03 21:26:39 +0700
+Processing by ArticlesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"44fJfS4y1YYNkil1eB6mmjOyIy7OccpNZnalMDG1q2XlHVOZ6U0/bEesYerF7G1EowmLG6NV8p5hxoL6py33+w==", "id"=>"4"}
+  [1m[35mArticle Load (2.0ms)[0m  SELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (3.0ms)[0m  DELETE FROM "articles" WHERE "articles"."id" = $1  [["id", 4]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/articles
+Completed 302 Found in 22ms (ActiveRecord: 7.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 21:26:39 +0700
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (2.0ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered articles/_article.html.erb (5.0ms)
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (229.2ms)
+Completed 200 OK in 1056ms (Views: 1049.3ms | ActiveRecord: 3.0ms)
+
+
+Started DELETE "/articles/3" for ::1 at 2016-03-03 21:26:54 +0700
+Processing by ArticlesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"A6J4WIgbh9ju9WmdZHqIZyr3Y5EY0Xkebhgo6/VIwKIFOOK8T2RtMqTLIQLZiEO5ukzLpHX1Qc1pqA8hY9CcPA==", "id"=>"3"}
+  [1m[35mArticle Load (1.0ms)[0m  SELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (2.5ms)[0m  DELETE FROM "articles" WHERE "articles"."id" = $1  [["id", 3]]
+  [1m[36m (2.5ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/articles
+Completed 302 Found in 45ms (ActiveRecord: 6.5ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 21:26:54 +0700
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (1.5ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered articles/_article.html.erb (2.0ms)
+  [1m[36m (2.0ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (194.7ms)
+Completed 200 OK in 1062ms (Views: 1055.7ms | ActiveRecord: 3.5ms)
+
+
+Started DELETE "/articles/2" for ::1 at 2016-03-03 21:27:06 +0700
+Processing by ArticlesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"t6uNTEXKPwWiFQeuI0A6ocLD/tjyBe0f/wn9EAzpe7uxMReogrXV7+grTzGesvF/UnhW7Z8h1cz4udramnEnJQ==", "id"=>"2"}
+  [1m[35mArticle Load (1.0ms)[0m  SELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36m (2.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  DELETE FROM "articles" WHERE "articles"."id" = $1  [["id", 2]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/articles
+Completed 302 Found in 35ms (ActiveRecord: 5.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 21:27:06 +0700
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (2.0ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered articles/_article.html.erb (2.0ms)
+  [1m[36m (6.0ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (213.1ms)
+Completed 200 OK in 945ms (Views: 934.3ms | ActiveRecord: 8.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 21:30:10 +0700
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (5.0ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered articles/_article.html.erb (5.0ms)
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (254.2ms)
+Completed 200 OK in 1033ms (Views: 1023.4ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/assets/bootstrap/util.self-259befb5ba307350f3ed40e4ff1d27e6268e407ee0da02fd46435784459fc746.js?body=1" for ::1 at 2016-03-03 21:30:11 +0700
+
+
+Started GET "/assets/bootstrap/alert.self-44483afe785e8334f25977de4cc25db3b8ca7ef953e60d2eeda2deeeccfda56e.js?body=1" for ::1 at 2016-03-03 21:30:12 +0700
+
+
+Started GET "/assets/application.self-030b94d6c14736f3b49edf213461e588784edd8d46a688e2f48ce2e0601c7943.css?body=1" for ::1 at 2016-03-03 21:30:12 +0700
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-03 21:30:12 +0700
+
+
+Started GET "/assets/bootstrap/button.self-9a46ecb8ace47b217ba3ee88c7a8c7572b0ef75e77fff1b4e32ddf00af7fefe4.js?body=1" for ::1 at 2016-03-03 21:30:12 +0700
+
+
+Started GET "/assets/bootstrap/carousel.self-8e572923c87f450d7f38176167d96a27913dac0771100278265523b97f2bb074.js?body=1" for ::1 at 2016-03-03 21:30:12 +0700
+
+
+Started GET "/assets/bootstrap/collapse.self-4f8619d8d3fb252be59e65ef55b5a91dee275861b5d729c7e64f55091266984e.js?body=1" for ::1 at 2016-03-03 21:30:12 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.self-77fbc8160624d6515b5d55fa40e7e7ba8f4ebe526b6007fe5a6bbc4437b46a1e.js?body=1" for ::1 at 2016-03-03 21:30:12 +0700
+
+
+Started GET "/assets/bootstrap/modal.self-83fa21d21f8b68b3389ce5018b81be0ad967d65f1e08e3acd0d5c804e31e64a7.js?body=1" for ::1 at 2016-03-03 21:30:12 +0700
+
+
+Started GET "/assets/bootstrap/scrollspy.self-7474c149d14b6006919c68e8dd36423c169ef1c15b54a701b82e3931831fa434.js?body=1" for ::1 at 2016-03-03 21:30:12 +0700
+
+
+Started GET "/assets/bootstrap/tab.self-7249bd863668fd4b877386598154c53466a77a853ae4d9ee2c45476fa3a361eb.js?body=1" for ::1 at 2016-03-03 21:30:12 +0700
+
+
+Started GET "/assets/bootstrap/tooltip.self-ff495cd6932165d4adceb3a8baec7340536f4d26b2fa14cd202e651ccc7f513a.js?body=1" for ::1 at 2016-03-03 21:30:12 +0700
+
+
+Started GET "/assets/bootstrap/popover.self-1b1efcd196ba075b0e9b7962c2a7631c8d7bcc7010e0140ad2c071cb0594a1d9.js?body=1" for ::1 at 2016-03-03 21:30:12 +0700
+
+
+Started GET "/assets/bootstrap-sprockets.self-636159b35205da4142a43bc02d2849d77d3ac07a0946211585cde15a9c6ff21f.js?body=1" for ::1 at 2016-03-03 21:30:12 +0700
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-03 21:30:12 +0700
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-03 21:30:12 +0700
+
+
+Started GET "/assets/articles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-03 21:30:12 +0700
+
+
+Started GET "/assets/comments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-03 21:30:13 +0700
+
+
+Started GET "/assets/application.self-cf24ffb375e57ee36cd3a7e44f6311da89463903f6aa6028ce66ea4ae6734148.js?body=1" for ::1 at 2016-03-03 21:30:13 +0700
+
+
+Started GET "/articles/1" for ::1 at 2016-03-03 21:30:15 +0700
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mArticle Load (0.0ms)[0m  SELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mComment Load (1.0ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = $1[0m  [["article_id", 1]]
+  Rendered articles/show.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 440ms (Views: 435.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/articles/new" for ::1 at 2016-03-03 21:30:18 +0700
+Processing by ArticlesController#new as HTML
+  Rendered articles/_form.html.erb (2.0ms)
+  Rendered articles/new.html.erb within layouts/application (60.0ms)
+Completed 200 OK in 638ms (Views: 636.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/articles" for ::1 at 2016-03-03 21:30:22 +0700
+Processing by ArticlesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"So1zLA34s8GzdkqEZUTvbEg8AiknC5/8l9d0BAgJpxlMF+nIyodZK/lIAhvYtiSy2IeqHEovpy+QZ1POnpH7hw==", "article"=>{"title"=>"ưqe", "body"=>"áld"}, "commit"=>"Create Article"}
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mArticle Exists (2.0ms)[0m  [1mSELECT  1 AS one FROM "articles" WHERE "articles"."title" = 'ưqe' LIMIT 1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "articles" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["title", "ưqe"], ["body", "áld"], ["created_at", "2016-03-03 14:30:22.631501"], ["updated_at", "2016-03-03 14:30:22.631501"]]
+  [1m[36m (2.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/articles/8
+Completed 302 Found in 30ms (ActiveRecord: 6.0ms)
+
+
+Started GET "/articles/8" for ::1 at 2016-03-03 21:30:22 +0700
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[35mArticle Load (1.0ms)[0m  SELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mComment Load (1.0ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = $1[0m  [["article_id", 8]]
+  Rendered articles/show.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 615ms (Views: 608.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 21:30:27 +0700
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (1.0ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered articles/_article.html.erb (5.0ms)
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (160.1ms)
+Completed 200 OK in 794ms (Views: 789.3ms | ActiveRecord: 2.0ms)
+
+
+Started DELETE "/articles/8" for ::1 at 2016-03-03 21:30:29 +0700
+Processing by ArticlesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"BlWS+cttWGMIzeXrSKKCzXrdqEodD2xmf4XU90CkuC4AzwgdDBKyiULzrXT1UEkT6mYAf3ArVLV4NfM91jzksA==", "id"=>"8"}
+  [1m[35mArticle Load (1.0ms)[0m  SELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  DELETE FROM "articles" WHERE "articles"."id" = $1  [["id", 8]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/articles
+Completed 302 Found in 19ms (ActiveRecord: 4.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 21:30:30 +0700
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (1.0ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered articles/_article.html.erb (2.0ms)
+  [1m[36m (2.0ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (232.2ms)
+Completed 200 OK in 1023ms (Views: 1013.2ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 21:35:04 +0700
+  [1m[36mActiveRecord::SchemaMigration Load (4.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (5.0ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered articles/_article.html.erb (14.0ms)
+  [1m[36m (1.5ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (402.9ms)
+Completed 200 OK in 2873ms (Views: 2632.0ms | ActiveRecord: 28.5ms)
+
+
+Started GET "/assets/application.self-030b94d6c14736f3b49edf213461e588784edd8d46a688e2f48ce2e0601c7943.css?body=1" for ::1 at 2016-03-03 21:35:10 +0700
+
+
+Started GET "/assets/bootstrap/alert.self-44483afe785e8334f25977de4cc25db3b8ca7ef953e60d2eeda2deeeccfda56e.js?body=1" for ::1 at 2016-03-03 21:35:10 +0700
+
+
+Started GET "/assets/bootstrap/util.self-259befb5ba307350f3ed40e4ff1d27e6268e407ee0da02fd46435784459fc746.js?body=1" for ::1 at 2016-03-03 21:35:10 +0700
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-03 21:35:10 +0700
+
+
+Started GET "/assets/bootstrap/button.self-9a46ecb8ace47b217ba3ee88c7a8c7572b0ef75e77fff1b4e32ddf00af7fefe4.js?body=1" for ::1 at 2016-03-03 21:35:11 +0700
+
+
+Started GET "/assets/bootstrap/carousel.self-8e572923c87f450d7f38176167d96a27913dac0771100278265523b97f2bb074.js?body=1" for ::1 at 2016-03-03 21:35:11 +0700
+
+
+Started GET "/assets/bootstrap/collapse.self-4f8619d8d3fb252be59e65ef55b5a91dee275861b5d729c7e64f55091266984e.js?body=1" for ::1 at 2016-03-03 21:35:11 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.self-77fbc8160624d6515b5d55fa40e7e7ba8f4ebe526b6007fe5a6bbc4437b46a1e.js?body=1" for ::1 at 2016-03-03 21:35:11 +0700
+
+
+Started GET "/assets/bootstrap/modal.self-83fa21d21f8b68b3389ce5018b81be0ad967d65f1e08e3acd0d5c804e31e64a7.js?body=1" for ::1 at 2016-03-03 21:35:11 +0700
+
+
+Started GET "/assets/bootstrap/scrollspy.self-7474c149d14b6006919c68e8dd36423c169ef1c15b54a701b82e3931831fa434.js?body=1" for ::1 at 2016-03-03 21:35:11 +0700
+
+
+Started GET "/assets/bootstrap/tab.self-7249bd863668fd4b877386598154c53466a77a853ae4d9ee2c45476fa3a361eb.js?body=1" for ::1 at 2016-03-03 21:35:11 +0700
+
+
+Started GET "/assets/bootstrap/tooltip.self-ff495cd6932165d4adceb3a8baec7340536f4d26b2fa14cd202e651ccc7f513a.js?body=1" for ::1 at 2016-03-03 21:35:11 +0700
+
+
+Started GET "/assets/bootstrap/popover.self-1b1efcd196ba075b0e9b7962c2a7631c8d7bcc7010e0140ad2c071cb0594a1d9.js?body=1" for ::1 at 2016-03-03 21:35:11 +0700
+
+
+Started GET "/assets/bootstrap-sprockets.self-636159b35205da4142a43bc02d2849d77d3ac07a0946211585cde15a9c6ff21f.js?body=1" for ::1 at 2016-03-03 21:35:11 +0700
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-03 21:35:11 +0700
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-03 21:35:11 +0700
+
+
+Started GET "/assets/articles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-03 21:35:11 +0700
+
+
+Started GET "/assets/comments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-03 21:35:11 +0700
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-03-03 21:35:11 +0700
+
+
+Started GET "/articles/new" for ::1 at 2016-03-03 21:35:44 +0700
+Processing by ArticlesController#new as HTML
+  Rendered articles/_form.html.erb (65.0ms)
+  Rendered articles/new.html.erb within layouts/application (124.1ms)
+Completed 200 OK in 671ms (Views: 670.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/articles" for ::1 at 2016-03-03 21:35:49 +0700
+Processing by ArticlesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"oeq7zi4ta6zV0gAVd2gYK6Ad6Xge3ZSnjj9ImD6v77SncCEq6VKBRp/sSIrKmtP1MKZBTXP5rHSJj29SqDezKg==", "article"=>{"title"=>"ád", "body"=>"ád"}, "commit"=>"Create Article"}
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mArticle Exists (3.0ms)[0m  [1mSELECT  1 AS one FROM "articles" WHERE "articles"."title" = 'ád' LIMIT 1[0m
+  [1m[35mSQL (3.0ms)[0m  INSERT INTO "articles" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["title", "ád"], ["body", "ád"], ["created_at", "2016-03-03 14:35:49.586831"], ["updated_at", "2016-03-03 14:35:49.586831"]]
+  [1m[36m (2.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/articles/9
+Completed 302 Found in 115ms (ActiveRecord: 9.0ms)
+
+
+Started GET "/articles/9" for ::1 at 2016-03-03 21:35:49 +0700
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mArticle Load (1.0ms)[0m  SELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mComment Load (4.0ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = $1[0m  [["article_id", 9]]
+  Rendered articles/show.html.erb within layouts/application (251.2ms)
+Completed 200 OK in 972ms (Views: 895.4ms | ActiveRecord: 13.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 21:35:54 +0700
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (2.0ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered articles/_article.html.erb (8.0ms)
+  [1m[36m (2.0ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (397.3ms)
+Completed 200 OK in 1553ms (Views: 1546.4ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 21:40:50 +0700
+  [1m[36mActiveRecord::SchemaMigration Load (4.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (4.0ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered articles/_article.html.erb (6.0ms)
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (250.2ms)
+Completed 200 OK in 2276ms (Views: 2166.6ms | ActiveRecord: 19.0ms)
+
+
+Started GET "/assets/bootstrap/util.self-259befb5ba307350f3ed40e4ff1d27e6268e407ee0da02fd46435784459fc746.js?body=1" for ::1 at 2016-03-03 21:40:55 +0700
+
+
+Started GET "/assets/application.self-030b94d6c14736f3b49edf213461e588784edd8d46a688e2f48ce2e0601c7943.css?body=1" for ::1 at 2016-03-03 21:40:55 +0700
+
+
+Started GET "/assets/bootstrap/alert.self-44483afe785e8334f25977de4cc25db3b8ca7ef953e60d2eeda2deeeccfda56e.js?body=1" for ::1 at 2016-03-03 21:40:55 +0700
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-03 21:40:55 +0700
+
+
+Started GET "/assets/bootstrap/button.self-9a46ecb8ace47b217ba3ee88c7a8c7572b0ef75e77fff1b4e32ddf00af7fefe4.js?body=1" for ::1 at 2016-03-03 21:40:55 +0700
+
+
+Started GET "/assets/bootstrap/carousel.self-8e572923c87f450d7f38176167d96a27913dac0771100278265523b97f2bb074.js?body=1" for ::1 at 2016-03-03 21:40:55 +0700
+
+
+Started GET "/assets/bootstrap/collapse.self-4f8619d8d3fb252be59e65ef55b5a91dee275861b5d729c7e64f55091266984e.js?body=1" for ::1 at 2016-03-03 21:40:55 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.self-77fbc8160624d6515b5d55fa40e7e7ba8f4ebe526b6007fe5a6bbc4437b46a1e.js?body=1" for ::1 at 2016-03-03 21:40:56 +0700
+
+
+Started GET "/assets/bootstrap/modal.self-83fa21d21f8b68b3389ce5018b81be0ad967d65f1e08e3acd0d5c804e31e64a7.js?body=1" for ::1 at 2016-03-03 21:40:56 +0700
+
+
+Started GET "/assets/bootstrap/scrollspy.self-7474c149d14b6006919c68e8dd36423c169ef1c15b54a701b82e3931831fa434.js?body=1" for ::1 at 2016-03-03 21:40:56 +0700
+
+
+Started GET "/assets/bootstrap/tab.self-7249bd863668fd4b877386598154c53466a77a853ae4d9ee2c45476fa3a361eb.js?body=1" for ::1 at 2016-03-03 21:40:56 +0700
+
+
+Started GET "/assets/bootstrap/tooltip.self-ff495cd6932165d4adceb3a8baec7340536f4d26b2fa14cd202e651ccc7f513a.js?body=1" for ::1 at 2016-03-03 21:40:56 +0700
+
+
+Started GET "/assets/bootstrap/popover.self-1b1efcd196ba075b0e9b7962c2a7631c8d7bcc7010e0140ad2c071cb0594a1d9.js?body=1" for ::1 at 2016-03-03 21:40:56 +0700
+
+
+Started GET "/assets/bootstrap-sprockets.self-636159b35205da4142a43bc02d2849d77d3ac07a0946211585cde15a9c6ff21f.js?body=1" for ::1 at 2016-03-03 21:40:56 +0700
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-03 21:40:56 +0700
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-03 21:40:56 +0700
+
+
+Started GET "/assets/articles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-03 21:40:56 +0700
+
+
+Started GET "/assets/comments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-03 21:40:56 +0700
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-03-03 21:40:56 +0700
+
+
+Started DELETE "/articles/9" for ::1 at 2016-03-03 21:41:07 +0700
+Processing by ArticlesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"EcAJU14Lu/JRy/sdQu6VUdSWcGTHOUwmnM2dubRQvZoXWpO3mXRRGBv1s4L/HF6PRC3YUaoddPWbfbpzIsjhBA==", "id"=>"9"}
+  [1m[35mArticle Load (1.0ms)[0m  SELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (7.0ms)[0m  DELETE FROM "articles" WHERE "articles"."id" = $1  [["id", 9]]
+  [1m[36m (2.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/articles
+Completed 302 Found in 87ms (ActiveRecord: 12.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 21:41:07 +0700
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (2.0ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered articles/_article.html.erb (1.0ms)
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (209.1ms)
+Completed 200 OK in 998ms (Views: 991.2ms | ActiveRecord: 3.0ms)
+
+
+Started DELETE "/articles/1" for ::1 at 2016-03-03 21:41:39 +0700
+Processing by ArticlesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"UTg1KT3rhwl+LguEmynNzIufQXiMWPSUkl8gRaUcJnRXoq/N+pRt4zQQQxsm2wYSGyTpTeF8zEeV7wePM4R66g==", "id"=>"1"}
+  [1m[35mArticle Load (1.0ms)[0m  SELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (5.0ms)[0m  DELETE FROM "articles" WHERE "articles"."id" = $1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 7.0ms)
+
+ActiveRecord::InvalidForeignKey (PG::ForeignKeyViolation: ERROR:  update or delete on table "articles" violates foreign key constraint "fk_rails_3bf61a60d3" on table "comments"
+DETAIL:  Key (id)=(1) is still referenced from table "comments".
+: DELETE FROM "articles" WHERE "articles"."id" = $1):
+  app/controllers/articles_controller.rb:67:in `destroy'
+
+
+  Rendered c:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.0ms)
+  Rendered c:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (22.0ms)
+  Rendered c:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (4.0ms)
+  Rendered c:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (3874.6ms)
+  Rendered c:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (2.0ms)
+  Rendered c:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered c:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered c:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (2.0ms)
+  Rendered c:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (2871.9ms)
+  Rendered c:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered c:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (2.0ms)
+  Rendered c:/RailsInstaller/Ruby2.2.0/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (6967.7ms)
+
+
+Started GET "/articles/new" for ::1 at 2016-03-03 21:41:52 +0700
+Processing by ArticlesController#new as HTML
+  Rendered articles/_form.html.erb (109.1ms)
+  Rendered articles/new.html.erb within layouts/application (201.1ms)
+Completed 200 OK in 1091ms (Views: 1084.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/articles/new" for ::1 at 2016-03-03 21:41:54 +0700
+Processing by ArticlesController#new as HTML
+  Rendered articles/_form.html.erb (3.0ms)
+  Rendered articles/new.html.erb within layouts/application (68.0ms)
+Completed 200 OK in 1116ms (Views: 1113.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/articles/new" for ::1 at 2016-03-03 21:41:55 +0700
+Processing by ArticlesController#new as HTML
+  Rendered articles/_form.html.erb (4.0ms)
+  Rendered articles/new.html.erb within layouts/application (101.1ms)
+Completed 200 OK in 1037ms (Views: 1035.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/articles/new" for ::1 at 2016-03-03 21:41:56 +0700
+Processing by ArticlesController#new as HTML
+  Rendered articles/_form.html.erb (4.0ms)
+  Rendered articles/new.html.erb within layouts/application (83.1ms)
+Completed 200 OK in 896ms (Views: 893.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 21:41:57 +0700
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (1.0ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered articles/_article.html.erb (4.0ms)
+  [1m[36m (2.0ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (198.1ms)
+Completed 200 OK in 926ms (Views: 919.7ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 21:41:58 +0700
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (1.0ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered articles/_article.html.erb (2.0ms)
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (208.1ms)
+Completed 200 OK in 956ms (Views: 952.2ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 21:41:59 +0700
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (2.0ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered articles/_article.html.erb (1.0ms)
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (173.1ms)
+Completed 200 OK in 852ms (Views: 845.9ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/articles/new" for ::1 at 2016-03-03 21:42:03 +0700
+Processing by ArticlesController#new as HTML
+  Rendered articles/_form.html.erb (3.0ms)
+  Rendered articles/new.html.erb within layouts/application (84.1ms)
+Completed 200 OK in 968ms (Views: 965.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/articles/new" for ::1 at 2016-03-03 21:42:04 +0700
+Processing by ArticlesController#new as HTML
+  Rendered articles/_form.html.erb (7.0ms)
+  Rendered articles/new.html.erb within layouts/application (55.0ms)
+Completed 200 OK in 719ms (Views: 716.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/articles" for ::1 at 2016-03-03 21:42:11 +0700
+Processing by ArticlesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"f8ha/6HgvPCMG6orzfMkw7KCQEmQvwp4XepaBIdEEv15UsAbZp9WGsYl4rRwAe8dIjnofP2bMqtaWn3OEdxOYw==", "article"=>{"title"=>"ád", "body"=>"ưe"}, "commit"=>"Create Article"}
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mArticle Exists (3.0ms)[0m  [1mSELECT  1 AS one FROM "articles" WHERE "articles"."title" = 'ád' LIMIT 1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "articles" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["title", "ád"], ["body", "ưe"], ["created_at", "2016-03-03 14:42:11.429532"], ["updated_at", "2016-03-03 14:42:11.429532"]]
+  [1m[36m (2.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/articles/10
+Completed 302 Found in 86ms (ActiveRecord: 6.0ms)
+
+
+Started GET "/articles/10" for ::1 at 2016-03-03 21:42:11 +0700
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"10"}
+  [1m[35mArticle Load (1.0ms)[0m  SELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT 1  [["id", 10]]
+  [1m[36mComment Load (1.0ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = $1[0m  [["article_id", 10]]
+  Rendered articles/show.html.erb within layouts/application (168.1ms)
+Completed 200 OK in 772ms (Views: 759.8ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 21:42:15 +0700
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (2.0ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered articles/_article.html.erb (5.0ms)
+  [1m[36m (2.0ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (204.1ms)
+Completed 200 OK in 803ms (Views: 794.0ms | ActiveRecord: 4.0ms)
+
+
+Started DELETE "/articles/10" for ::1 at 2016-03-03 21:42:41 +0700
+Processing by ArticlesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"LL+KIvJKf6xt5orlIfTNDhM/OpoI1t3035nFGuMiZswqJRDGNTWVRifYwnqcBgbQg4SSr2Xy5SfYKeLQdbo6Ug==", "id"=>"10"}
+  [1m[35mArticle Load (2.0ms)[0m  SELECT  "articles".* FROM "articles" WHERE "articles"."id" = $1 LIMIT 1  [["id", 10]]
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  DELETE FROM "articles" WHERE "articles"."id" = $1  [["id", 10]]
+  [1m[36m (2.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/articles
+Completed 302 Found in 24ms (ActiveRecord: 5.0ms)
+
+
+Started GET "/articles" for ::1 at 2016-03-03 21:42:41 +0700
+Processing by ArticlesController#index as HTML
+  [1m[35mArticle Load (2.0ms)[0m  SELECT  "articles".* FROM "articles" LIMIT 5 OFFSET 0
+  Rendered articles/_article.html.erb (2.0ms)
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (193.1ms)
+Completed 200 OK in 783ms (Views: 777.8ms | ActiveRecord: 3.0ms)

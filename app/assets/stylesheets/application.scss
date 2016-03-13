@@ -1,21 +1,49 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
- *= require_self
- */
-
+// Custom bootstrap variables must be set or import before bootstrap itself.
 @import "bootstrap";
 
-@import "welcome";
+.comments{
+	.card-title{
+		img{
+	    	border-radius: 50%;
+	    	padding: 10px;
+		}
+	    color: #31708f;
+	    background-color: #d9edf7;
+	    
+	}
+	border-color: #bce8f1;
+	.card-text{
+		padding-left: 50px;
+	}
+}
 
-@import url(https://fonts.googleapis.com/css?family=Satisfy);
+.custom-link{
+	text-align: right;
+}
+
+.container{
+	padding-top: 10px;
+}
+
+.notice{
+	color: red;
+}
+
+.custom_link_new{
+	padding-bottom: 50px;
+}
+
+.custom-title{
+	font-weight: bold;
+}
+
+.current{
+	z-index: 2;
+    color: #fff;
+    cursor: default;
+    background-color: #0275d8;
+    border-color: #0275d8;
+}
+.page, .first, .prev, .next, .last{
+	@extend .page-link;
+}
