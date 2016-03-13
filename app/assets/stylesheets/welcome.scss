@@ -1,0 +1,39 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body{
+	font-family: 'Satisfy', cursive;
+}
+.v-bg{
+	background-color: #d11920;
+	position: relative;
+	.navbar-brand{
+		color: #FFD1D1;
+	}
+	.nav-item{
+		.nav-link{
+			color: #eee;
+			&hover{
+				color: darken(#eee, 10%);
+			}
+		}
+	}
+}
+.v-navbar-right{
+	right: 10px;
+	position: absolute;
+}
+
+.v-bg-jumbotron{
+	background: lighten(rgba(209,25,32,0.87), 10%);
+	color: #fff;
+	.btn-group{
+		color: #000;
+		.btn{
+			background-color: #fff;
+			border-width: 1px;
+			border-color: #000;
+		}
+	}
+}
