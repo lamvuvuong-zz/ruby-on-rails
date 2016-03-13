@@ -1,0 +1,58 @@
+// Place all the styles related to the Orders controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.comments{
+	.card-title{
+		img{
+	    	border-radius: 50%;
+	    	padding: 10px;
+		}
+	    color: #31708f;
+	    background-color: lighter(#d11920, 10%);
+	    
+	}
+	border-color: #d11920;
+	.card-text{
+		padding-left: 50px;
+	}
+}
+
+.custom-link{
+	text-align: right;
+}
+
+.container{
+	padding-top: 10px;
+}
+
+.notice{
+	color: red;
+}
+
+.custom_link_new{
+	padding-bottom: 50px;
+}
+
+.custom-title{
+	font-weight: bold;
+}
+
+.current{
+	z-index: 2;
+    color: #fff;
+    cursor: default;
+    background-color: #0275d8;
+    border-color: #0275d8;
+}
+.pagination{
+	a{
+		padding: 10px;
+	}
+	.current{
+		padding: 10px;
+		background-color: #d11920;
+
+	}
+}

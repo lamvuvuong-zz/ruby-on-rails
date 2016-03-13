@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
+  resources :food_items do
+    resources :orders
+  end
   get 'menu/index'
 
   get 'menu' => 'menu#index'
+
+  get '/orders/:id', to: 'orders#show'
+
   # get 'contact' => 'welcome#contact_us', as: 'contact_us'
   get 'contact_us' => 'welcome#contact_us'
 
