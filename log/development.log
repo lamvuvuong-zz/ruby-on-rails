@@ -25885,3 +25885,241 @@ Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde
 
 
 Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-03-14 00:17:57 +0700
+
+
+Started GET "/" for ::1 at 2016-03-14 17:55:32 +0700
+  [1m[36mActiveRecord::SchemaMigration Load (4.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (38.0ms)
+Completed 200 OK in 25619ms (Views: 25524.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/menu" for ::1 at 2016-03-14 17:57:22 +0700
+Processing by MenuController#index as HTML
+  [1m[35mFoodItem Load (156.1ms)[0m  SELECT  "food_items".* FROM "food_items" WHERE (section ILIKE '%%')  ORDER BY name ASC LIMIT 5 OFFSET 0
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM "food_items" WHERE (section ILIKE '%%')[0m
+  Rendered menu/index.html.erb within layouts/application (1004.7ms)
+Completed 200 OK in 1696ms (Views: 1445.1ms | ActiveRecord: 183.1ms)
+
+
+Started GET "/menu?order=&section=Breakfast" for ::1 at 2016-03-14 17:57:32 +0700
+Processing by MenuController#index as HTML
+  Parameters: {"order"=>"", "section"=>"Breakfast"}
+  [1m[35mFoodItem Load (3.0ms)[0m  SELECT  "food_items".* FROM "food_items" WHERE (section ILIKE '%Breakfast%')  ORDER BY name ASC LIMIT 5 OFFSET 0
+  [1m[36m (2.0ms)[0m  [1mSELECT COUNT(*) FROM "food_items" WHERE (section ILIKE '%Breakfast%')[0m
+  Rendered menu/index.html.erb within layouts/application (155.1ms)
+Completed 200 OK in 963ms (Views: 953.9ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/menu?order=&section=Lunch" for ::1 at 2016-03-14 17:57:35 +0700
+Processing by MenuController#index as HTML
+  Parameters: {"order"=>"", "section"=>"Lunch"}
+  [1m[35mFoodItem Load (2.0ms)[0m  SELECT  "food_items".* FROM "food_items" WHERE (section ILIKE '%Lunch%')  ORDER BY name ASC LIMIT 5 OFFSET 0
+  [1m[36m (2.0ms)[0m  [1mSELECT COUNT(*) FROM "food_items" WHERE (section ILIKE '%Lunch%')[0m
+  Rendered menu/index.html.erb within layouts/application (228.2ms)
+Completed 200 OK in 1208ms (Views: 1201.0ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/menu?order=Date+Ascending&section=Lunch" for ::1 at 2016-03-14 17:57:40 +0700
+Processing by MenuController#index as HTML
+  Parameters: {"order"=>"Date Ascending", "section"=>"Lunch"}
+  [1m[35mFoodItem Load (76.1ms)[0m  SELECT  "food_items".* FROM "food_items" WHERE (section ILIKE '%Lunch%')  ORDER BY "food_items"."created_at" ASC LIMIT 5 OFFSET 0
+  [1m[36m (2.0ms)[0m  [1mSELECT COUNT(*) FROM "food_items" WHERE (section ILIKE '%Lunch%')[0m
+  Rendered menu/index.html.erb within layouts/application (238.2ms)
+Completed 200 OK in 1091ms (Views: 1008.9ms | ActiveRecord: 78.0ms)
+
+
+Started GET "/menu?order=Date+Descending&section=Lunch" for ::1 at 2016-03-14 17:57:45 +0700
+Processing by MenuController#index as HTML
+  Parameters: {"order"=>"Date Descending", "section"=>"Lunch"}
+  [1m[35mFoodItem Load (2.0ms)[0m  SELECT  "food_items".* FROM "food_items" WHERE (section ILIKE '%Lunch%')  ORDER BY "food_items"."created_at" DESC LIMIT 5 OFFSET 0
+  [1m[36m (2.0ms)[0m  [1mSELECT COUNT(*) FROM "food_items" WHERE (section ILIKE '%Lunch%')[0m
+  Rendered menu/index.html.erb within layouts/application (147.1ms)
+Completed 200 OK in 885ms (Views: 877.7ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/menu?order=Date+Descending" for ::1 at 2016-03-14 17:57:50 +0700
+Processing by MenuController#index as HTML
+  Parameters: {"order"=>"Date Descending"}
+  [1m[35mFoodItem Load (2.0ms)[0m  SELECT  "food_items".* FROM "food_items" WHERE (section ILIKE '%%')  ORDER BY "food_items"."created_at" DESC LIMIT 5 OFFSET 0
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM "food_items" WHERE (section ILIKE '%%')[0m
+  Rendered menu/index.html.erb within layouts/application (648.4ms)
+Completed 200 OK in 1467ms (Views: 1461.2ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/menu/index?order=Date+Descending&page=2" for ::1 at 2016-03-14 17:57:57 +0700
+Processing by MenuController#index as HTML
+  Parameters: {"order"=>"Date Descending", "page"=>"2"}
+  [1m[35mFoodItem Load (2.0ms)[0m  SELECT  "food_items".* FROM "food_items" WHERE (section ILIKE '%%')  ORDER BY "food_items"."created_at" DESC LIMIT 5 OFFSET 5
+  [1m[36m (2.0ms)[0m  [1mSELECT COUNT(*) FROM "food_items" WHERE (section ILIKE '%%')[0m
+  Rendered menu/index.html.erb within layouts/application (906.6ms)
+Completed 200 OK in 1673ms (Views: 1665.9ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/food_items/new" for ::1 at 2016-03-14 17:58:01 +0700
+Processing by FoodItemsController#new as HTML
+  Rendered food_items/_form.html.erb (157.1ms)
+  Rendered food_items/new.html.erb within layouts/application (261.2ms)
+Completed 200 OK in 1001ms (Views: 998.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/menu" for ::1 at 2016-03-14 17:58:06 +0700
+Processing by MenuController#index as HTML
+  [1m[35mFoodItem Load (2.0ms)[0m  SELECT  "food_items".* FROM "food_items" WHERE (section ILIKE '%%')  ORDER BY name ASC LIMIT 5 OFFSET 0
+  [1m[36m (2.0ms)[0m  [1mSELECT COUNT(*) FROM "food_items" WHERE (section ILIKE '%%')[0m
+  Rendered menu/index.html.erb within layouts/application (686.5ms)
+Completed 200 OK in 1386ms (Views: 1378.8ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/food_items/2" for ::1 at 2016-03-14 17:58:12 +0700
+Processing by FoodItemsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mFoodItem Load (1.0ms)[0m  SELECT  "food_items".* FROM "food_items" WHERE "food_items"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mOrder Load (29.0ms)[0m  [1mSELECT "orders".* FROM "orders" WHERE "orders"."food_item_id" = $1[0m  [["food_item_id", 2]]
+  Rendered food_items/show.html.erb within layouts/application (375.2ms)
+Completed 200 OK in 1423ms (Views: 1134.4ms | ActiveRecord: 40.0ms)
+
+
+Started GET "/orders/2" for ::1 at 2016-03-14 17:58:20 +0700
+Processing by OrdersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mOrder Load (2.0ms)[0m  SELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT 1  [["id", 2]]
+  Rendered orders/show.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 807ms (Views: 794.5ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/contact_us" for ::1 at 2016-03-14 17:58:23 +0700
+Processing by WelcomeController#contact_us as HTML
+  Rendered welcome/contact_us.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 852ms (Views: 849.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-03-14 17:58:54 +0700
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 680ms (Views: 678.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/contact_us" for ::1 at 2016-03-14 17:59:09 +0700
+Processing by WelcomeController#contact_us as HTML
+  Rendered welcome/contact_us.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 987ms (Views: 985.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-03-14 17:59:16 +0700
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 763ms (Views: 761.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/menu" for ::1 at 2016-03-14 17:59:19 +0700
+Processing by MenuController#index as HTML
+  [1m[36mFoodItem Load (2.0ms)[0m  [1mSELECT  "food_items".* FROM "food_items" WHERE (section ILIKE '%%')  ORDER BY name ASC LIMIT 5 OFFSET 0[0m
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM "food_items" WHERE (section ILIKE '%%')
+  Rendered menu/index.html.erb within layouts/application (724.5ms)
+Completed 200 OK in 1510ms (Views: 1502.3ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/menu/index?page=2" for ::1 at 2016-03-14 17:59:27 +0700
+Processing by MenuController#index as HTML
+  Parameters: {"page"=>"2"}
+  [1m[36mFoodItem Load (1.0ms)[0m  [1mSELECT  "food_items".* FROM "food_items" WHERE (section ILIKE '%%')  ORDER BY name ASC LIMIT 5 OFFSET 5[0m
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM "food_items" WHERE (section ILIKE '%%')
+  Rendered menu/index.html.erb within layouts/application (399.3ms)
+Completed 200 OK in 809ms (Views: 805.1ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/menu/index" for ::1 at 2016-03-14 17:59:32 +0700
+Processing by MenuController#index as HTML
+  [1m[36mFoodItem Load (3.0ms)[0m  [1mSELECT  "food_items".* FROM "food_items" WHERE (section ILIKE '%%')  ORDER BY name ASC LIMIT 5 OFFSET 0[0m
+  [1m[35m (3.0ms)[0m  SELECT COUNT(*) FROM "food_items" WHERE (section ILIKE '%%')
+  Rendered menu/index.html.erb within layouts/application (776.7ms)
+Completed 200 OK in 1555ms (Views: 1546.6ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/menu?order=&section=Breakfast" for ::1 at 2016-03-14 17:59:36 +0700
+Processing by MenuController#index as HTML
+  Parameters: {"order"=>"", "section"=>"Breakfast"}
+  [1m[36mFoodItem Load (2.0ms)[0m  [1mSELECT  "food_items".* FROM "food_items" WHERE (section ILIKE '%Breakfast%')  ORDER BY name ASC LIMIT 5 OFFSET 0[0m
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM "food_items" WHERE (section ILIKE '%Breakfast%')
+  Rendered menu/index.html.erb within layouts/application (192.1ms)
+Completed 200 OK in 1046ms (Views: 1039.4ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/menu?order=&section=Lunch" for ::1 at 2016-03-14 17:59:42 +0700
+Processing by MenuController#index as HTML
+  Parameters: {"order"=>"", "section"=>"Lunch"}
+  [1m[36mFoodItem Load (2.0ms)[0m  [1mSELECT  "food_items".* FROM "food_items" WHERE (section ILIKE '%Lunch%')  ORDER BY name ASC LIMIT 5 OFFSET 0[0m
+  [1m[35m (2.0ms)[0m  SELECT COUNT(*) FROM "food_items" WHERE (section ILIKE '%Lunch%')
+  Rendered menu/index.html.erb within layouts/application (156.1ms)
+Completed 200 OK in 917ms (Views: 910.5ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/menu?order=" for ::1 at 2016-03-14 17:59:47 +0700
+Processing by MenuController#index as HTML
+  Parameters: {"order"=>""}
+  [1m[36mFoodItem Load (2.0ms)[0m  [1mSELECT  "food_items".* FROM "food_items" WHERE (section ILIKE '%%')  ORDER BY name ASC LIMIT 5 OFFSET 0[0m
+  [1m[35m (2.0ms)[0m  SELECT COUNT(*) FROM "food_items" WHERE (section ILIKE '%%')
+  Rendered menu/index.html.erb within layouts/application (771.5ms)
+Completed 200 OK in 1561ms (Views: 1554.5ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/menu?order=Date+Ascending&section=" for ::1 at 2016-03-14 17:59:53 +0700
+Processing by MenuController#index as HTML
+  Parameters: {"order"=>"Date Ascending", "section"=>""}
+  [1m[36mFoodItem Load (2.0ms)[0m  [1mSELECT  "food_items".* FROM "food_items" WHERE (section ILIKE '%%')  ORDER BY "food_items"."created_at" ASC LIMIT 5 OFFSET 0[0m
+  [1m[35m (2.0ms)[0m  SELECT COUNT(*) FROM "food_items" WHERE (section ILIKE '%%')
+  Rendered menu/index.html.erb within layouts/application (717.5ms)
+Completed 200 OK in 1535ms (Views: 1528.2ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/menu?order=Date+Descending&section=" for ::1 at 2016-03-14 17:59:59 +0700
+Processing by MenuController#index as HTML
+  Parameters: {"order"=>"Date Descending", "section"=>""}
+  [1m[36mFoodItem Load (1.0ms)[0m  [1mSELECT  "food_items".* FROM "food_items" WHERE (section ILIKE '%%')  ORDER BY "food_items"."created_at" DESC LIMIT 5 OFFSET 0[0m
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM "food_items" WHERE (section ILIKE '%%')
+  Rendered menu/index.html.erb within layouts/application (753.5ms)
+Completed 200 OK in 1603ms (Views: 1598.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/food_items/6" for ::1 at 2016-03-14 18:00:09 +0700
+Processing by FoodItemsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mFoodItem Load (1.0ms)[0m  [1mSELECT  "food_items".* FROM "food_items" WHERE "food_items"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mOrder Load (1.0ms)[0m  SELECT "orders".* FROM "orders" WHERE "orders"."food_item_id" = $1  [["food_item_id", 6]]
+  Rendered food_items/show.html.erb within layouts/application (14.0ms)
+Completed 200 OK in 947ms (Views: 936.3ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/food_items/6/orders" for ::1 at 2016-03-14 18:00:24 +0700
+Processing by OrdersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"fVvRPPCugqgvXDdmcdLie6SagaBcf+TFXJgfAMRVsoJCvENrOEbsijA4hk57Lf3I2p5GL53IessMXrGVHXNPGg==", "order"=>{"name"=>"Vuong", "phone_number"=>"123", "address"=>"Duy Tan", "quantity"=>"2"}, "commit"=>"Create Order", "food_item_id"=>"6"}
+  [1m[36mFoodItem Load (2.0ms)[0m  [1mSELECT  "food_items".* FROM "food_items" WHERE "food_items"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (142.1ms)[0m  [1mINSERT INTO "orders" ("name", "phone_number", "address", "quantity", "food_item_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Vuong"], ["phone_number", 123], ["address", "Duy Tan"], ["quantity", 2], ["food_item_id", 6], ["created_at", "2016-03-14 11:00:24.469620"], ["updated_at", "2016-03-14 11:00:24.469620"]]
+  [1m[35m (72.0ms)[0m  COMMIT
+Redirected to http://localhost:3000/food_items/6
+Completed 302 Found in 258ms (ActiveRecord: 216.1ms)
+
+
+Started GET "/food_items/6" for ::1 at 2016-03-14 18:00:24 +0700
+Processing by FoodItemsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mFoodItem Load (2.0ms)[0m  [1mSELECT  "food_items".* FROM "food_items" WHERE "food_items"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mOrder Load (1.0ms)[0m  SELECT "orders".* FROM "orders" WHERE "orders"."food_item_id" = $1  [["food_item_id", 6]]
+  Rendered food_items/show.html.erb within layouts/application (19.0ms)
+Completed 200 OK in 862ms (Views: 851.1ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/orders/4" for ::1 at 2016-03-14 18:00:33 +0700
+Processing by OrdersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mOrder Load (2.0ms)[0m  [1mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered orders/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 770ms (Views: 761.5ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/" for ::1 at 2016-03-14 18:00:35 +0700
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 811ms (Views: 808.6ms | ActiveRecord: 0.0ms)
