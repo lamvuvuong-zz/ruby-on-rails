@@ -13,11 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
-@import "bootstrap";
-
-@import "welcome";
-
-@import "orders";
-
-@import url(https://fonts.googleapis.com/css?family=Roboto);
